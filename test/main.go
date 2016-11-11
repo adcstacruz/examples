@@ -20,10 +20,22 @@ func main() {
 
 	// This will register a distillate that processes a path
 	// read from an environment variable
-	path := os.Getenv("REF_PMU_PATH")
-	if path == "" {
-		fmt.Println("Missing $REF_PMU_PATH")
+	path1 := os.Getenv("INPUT1")
+	if path1 == "" {
+		fmt.Println("Missing $INPUT1")
 		os.Exit(1)
+	}
+	path2 := os.Getenv("INPUT2")
+	if path2 == "" {
+		fmt.Println("Missing $INPUT2")
+		os.Exit(1)
+	}
+	name := os.Getenv("OUTPUT")
+
+	if name == "" {
+		fmt.Println("Missing $OUTPUT")
+		os.Exit(1)
+
 	}
 	ds.RegisterDistillate(&distil.Registration{
 		// The class that implements your algorithm
@@ -33,13 +45,13 @@ func main() {
 		// the same name here. We would normally use a UUID but opted
 		// for this so as to be more human friendly. If the program
 		// is restarted, this is how it knows where to pick up from.
-		UniqueName: "add_anton_" + strings.Replace(path, "/", "_", -1),
+		UniqueName: "add_anton_" + strings.Replace(path1, "/", "_", -1),
 		// These are inputs to the distillate that will be loaded
 		// and presented to Process()
-		InputPaths: []string{path + "/L1MAG", path + "/L2MAG"},
+		InputPaths: []string{path1, path2},
 		// These are the output paths for the distillate. They must
 		// also be strictly unique.
-		OutputPaths: []string{"/distillates" + path + "/addTwo"},
+		OutputPaths: []string{"/distillates/" + name},
 	})
 
 	ds.StartEngine()

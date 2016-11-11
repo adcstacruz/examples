@@ -52,7 +52,7 @@ func (d *addTwoDistiller) Process(in *distil.InputSet, out *distil.OutputSet) {
 	for i = 0; i < ns; i++ {
 		point1 := in.Get(0, i).V
 		point2 := in.Get(1, i).V
-		sum := point1 + point2
+		sum := point1 + point2 + 0.3
 
 		var time int64 = in.Get(0, i).T
 
