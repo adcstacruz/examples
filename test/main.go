@@ -36,7 +36,7 @@ func main() {
 		UniqueName: "add_anton_" + strings.Replace(path, "/", "_", -1),
 		// These are inputs to the distillate that will be loaded
 		// and presented to Process()
-		InputPaths: []string{path + "/L1ANG", path + "/L2ANG"},
+		InputPaths: []string{path + "/L1MAG", path + "/L2MAG"},
 		// These are the output paths for the distillate. They must
 		// also be strictly unique.
 		OutputPaths: []string{"/distillates" + path + "/addTwo"},
